@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Textutils :)</title>
+</head>
+<body>
+<h1 style="text-align: center;">Welcome to text analyzer</h1>
+<h2 style="margin-left:50px;">Enter your text below:</h2> 
+<form action="/analyze" method="get" >  <!--this action will take us to the link root/analyze-->
+     <textarea name="Text" style="margin-left: 50px; width: 1256px; height: 103px;border-width:4px ;border-color: darkolivegreen;"></textarea><br>
+     <input type="checkbox"  name="removepunc" style="margin-left:50px;">Remove punctuations <br>
+     <input type="checkbox"  name="upper"      style="margin-left:50px;">Change text to uppercase <br>
+     <input type="checkbox"  name="rm_newline" style="margin-left:50px;">Remove newlines <br>
+     <input type="checkbox"  name="rm_ext_space" style="margin-left:50px;">Remove extra spaces <br>
+     <br> 
+     <button type="submit" style="margin-left:50px;">Analyze Text</button>
+</form>
+</body>
+</html>
