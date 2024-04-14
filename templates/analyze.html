@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <title>Analyzing the text</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+        }  
+    </style>
+     
+   <!--html by default might remove extra spaces or newlines so we can use (whitespace:pre) to preserve the spaces and newlines-->
+</head>
+<body >
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" ></script>
+    {% csrf_token %}
+    <!--navigation bar-->
+    <nav class="navbar navbar-expand-lg  bg-primary border-bottom border-body" data-bs-theme="dark" >
+     
+      <div class="container-fluid">  
+          <a class="navbar-brand" href="#">Text Analyses</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutus">About us</a>
+              </li>
+              
+          </div>
+        </div>
+    </nav>
+    <!--Alert message-->
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Text analysis is shown below</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <!--content-->
+    <div class="container" style="color: azure;text-align: center;padding:20px">
+      <h2>Your Analyzed Text: </h2>
+      <p ><strong><pre>{{analyzed}}</pre></strong></p>
+    </div>
+    
+    <p class="d-inline-flex gap-1" style ="padding: 20px;">
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Given Text</a>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Operations Performed</button>
+    </p>
+    <div class="row" style ="padding-left: 20px;">
+      <div class="col"style="max-width: 500px;">
+        <div class="collapse multi-collapse" id="multiCollapseExample1"  >
+          <div class="card card-body" style="text-align:left; overflow: auto;margin:  auto; ">
+           <pre>{{given }}</pre> 
+          </div>
+        </div>
+      </div>
+      <div class="col" style="max-width: 300px;">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body" style=" text-align: left;overflow: auto;margin:  auto;">
+            {% for operation in operations %}
+            <li>{{ operation }}</li>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      
+</body>
+</html>
+
+

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Textutils</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <!--checking that only one form uppercase to lower case is selected-->
+    <script>
+      function handleCaseCheckboxChange(checkbox) {
+          if (checkbox.checked) {
+              var checkboxes = document.querySelectorAll('.case-checkbox');
+              checkboxes.forEach(function(item) {
+                  if (item !== checkbox) {
+                      item.checked = false;
+                  }
+              });
+          }
+      }
+    </script>
+    <!--checking that the text if not empty-->
+    <script>
+      function validateText() {
+          var textInput = document.getElementById("exampleFormControlTextarea1").value;
+          if (!textInput.trim()) {
+              alert("Text is empty! Please enter some text.");
+              return false; // Prevent form submission
+          }
+          return true; // Allow form submission
+      }
+    </script>
+   
+    <form action="/analyze" method='post' onsubmit="return validateText()" > {% csrf_token %}
+      <!--navigation bar-->
+      <nav class="navbar navbar-expand-lg  bg-primary border-bottom border-body" data-bs-theme="dark" >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Textutils</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutus">About us</a>
+              </li>
+             
+              
+          </div>
+        </div>
+      </nav>
+      <!--message-->
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Welcome to Textutils!</strong> A place where you can play with your text.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <!--content-->
+      <div class="container" style="width: 500px;padding-top: 20px;" >
+        <!-- Text input -->
+          <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"> <strong>Enter your text:</strong></label>
+              <textarea  name="Text" class="form-control" id="exampleFormControlTextarea1" rows="8" style="background-color: rgb(192, 244, 227); "></textarea>
+          </div>
+        <!--options-->
+          <div class="form-check form-switch" >
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="removepunc">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remove punctuation</label>
+          </div>
+
+          <div class="form-check form-switch"> 
+            <input class="form-check-input case-checkbox" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="upper" onchange="handleCaseCheckboxChange(this)" >
+            <label class="form-check-label" for="flexSwitchCheckDefault">Change text to uppercase </label>
+          </div>
+
+          <div class="form-check form-switch"> 
+            <input class="form-check-input case-checkbox" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="lower" onchange="handleCaseCheckboxChange(this)" >
+            <label class="form-check-label" for="flexSwitchCheckDefault">Change text to lowercase </label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"name="rm_newline">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remove newlines</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="rm_ext_space">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remove extra spaces </label>
+          </div>
+        <!--submit button-->
+          <input class="btn btn-primary" type="submit" value="Analyze Text">
+      </div>
+    
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
